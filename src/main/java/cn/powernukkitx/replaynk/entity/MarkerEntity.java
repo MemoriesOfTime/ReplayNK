@@ -1,6 +1,6 @@
 package cn.powernukkitx.replaynk.entity;
 
-import cn.nukkit.entity.custom.CustomEntityDefinition;
+import cn.nukkit.entity.custom.EntityDefinition;
 import cn.nukkit.level.format.FullChunk;
 import cn.nukkit.nbt.tag.CompoundTag;
 
@@ -10,12 +10,13 @@ import cn.nukkit.nbt.tag.CompoundTag;
  * ReplayNK Project
  */
 public class MarkerEntity extends ReplayNKEntity {
-    private static final CustomEntityDefinition DEF =
-            CustomEntityDefinition
+    public static final EntityDefinition DEF =
+            EntityDefinition
                     .builder()
                     .identifier("replaynk:marker")
-                    .summonable(true)
+                    //.summonable(true)
                     .spawnEgg(false)
+                    .implementation(MarkerEntity.class)
                     .build();
     private static final String MARKER_INDEX_KEY = "MarkerIndex";
 
@@ -24,11 +25,11 @@ public class MarkerEntity extends ReplayNKEntity {
     }
 
     @Override
-    public CustomEntityDefinition getDefinition() {
+    public EntityDefinition getEntityDefinition() {
         return DEF;
     }
 
-    @Override
+    //@Override
     public String getOriginalName() {
         return "Marker";
     }

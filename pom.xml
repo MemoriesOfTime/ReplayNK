@@ -6,7 +6,7 @@
 
     <groupId>cn.powernukkitx</groupId>
     <artifactId>ReplayNK</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.1-MOT</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -19,13 +19,24 @@
             <id>jitpack.io</id>
             <url>https://www.jitpack.io</url>
         </repository>
+        <repository>
+            <id>repo-lanink-cn</id>
+            <url>https://repo.lanink.cn/</url>
+        </repository>
     </repositories>
 
     <dependencies>
         <dependency>
-            <groupId>cn.powernukkitx</groupId>
-            <artifactId>powernukkitx</artifactId>
-            <version>1.20.0-r2</version>
+            <groupId>cn.nukkit</groupId>
+            <artifactId>Nukkit</artifactId>
+            <version>MOT-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>cn.lanink</groupId>
+            <artifactId>CustomItemAPI</artifactId>
+            <version>1.0.7-PM1E-SNAPSHOT</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>

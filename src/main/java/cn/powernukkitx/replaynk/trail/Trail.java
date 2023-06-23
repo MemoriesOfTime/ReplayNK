@@ -1,7 +1,6 @@
 package cn.powernukkitx.replaynk.trail;
 
 import cn.nukkit.Player;
-import cn.nukkit.api.DoNotModify;
 import cn.nukkit.camera.instruction.impl.ClearInstruction;
 import cn.nukkit.form.element.ElementDropdown;
 import cn.nukkit.form.element.ElementInput;
@@ -68,7 +67,6 @@ public final class Trail {
         this.name = name;
     }
 
-    @DoNotModify
     public static Map<String, Trail> getTrails() {
         return TRAILS;
     }

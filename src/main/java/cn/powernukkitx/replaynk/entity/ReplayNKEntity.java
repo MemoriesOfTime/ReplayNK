@@ -17,6 +17,6 @@ public abstract class ReplayNKEntity extends Entity implements CustomEntity {
 
     @Override
     public int getNetworkId() {
-        return Entity.NETWORK_ID;
+        return this.getEntityDefinition().getRuntimeId();
     }
 }

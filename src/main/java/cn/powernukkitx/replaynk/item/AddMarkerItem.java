@@ -11,8 +11,10 @@ import cn.powernukkitx.replaynk.trail.Trail;
  * ReplayNK Project
  */
 public class AddMarkerItem extends ReplayNKItem {
+    public static final int CUSTOM_ITEM_ID = 12100;
+
     public AddMarkerItem() {
-        super("replaynk:add_marker", "Add Marker", "replaynk_add_marker");
+        super(/*"replaynk:add_marker"*/ CUSTOM_ITEM_ID, 0, 1, "Add Marker", "replaynk_add_marker");
     }
 
     @Override

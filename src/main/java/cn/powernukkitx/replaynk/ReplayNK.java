@@ -1,9 +1,9 @@
 package cn.powernukkitx.replaynk;
 
+import cn.lanink.customitemapi.CustomItemAPI;
 import cn.nukkit.Player;
 import cn.nukkit.Server;
-import cn.nukkit.entity.Entity;
-import cn.nukkit.entity.provider.CustomClassEntityProvider;
+import cn.nukkit.entity.custom.EntityManager;
 import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.Listener;
 import cn.nukkit.event.entity.EntityDamageByEntityEvent;
@@ -22,7 +22,6 @@ import cn.powernukkitx.replaynk.trail.Trail;
 import lombok.Getter;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -89,20 +88,19 @@ public final class ReplayNK extends PluginBase implements Listener {
     }
 
     private void registerItems() {
-        Item.registerCustomItem(List.of(
-                AddMarkerItem.class,
-                ClearMarkerItem.class,
-                ExitItem.class,
-                PauseItem.class,
-                PlayItem.class,
-                EditMarkerItem.class,
-                SettingItem.class,
-                MarkerPickerItem.class
-        ));
+        CustomItemAPI itemAPI = CustomItemAPI.getInstance();
+        itemAPI.registerCustomItem(AddMarkerItem.CUSTOM_ITEM_ID, AddMarkerItem.class);
+        itemAPI.registerCustomItem(ClearMarkerItem.CUSTOM_ITEM_ID, ClearMarkerItem.class);
+        itemAPI.registerCustomItem(ExitItem.CUSTOM_ITEM_ID, ExitItem.class);
+        itemAPI.registerCustomItem(PauseItem.CUSTOM_ITEM_ID, PauseItem.class);
+        itemAPI.registerCustomItem(PlayItem.CUSTOM_ITEM_ID, PlayItem.class);
+        itemAPI.registerCustomItem(EditMarkerItem.CUSTOM_ITEM_ID, EditMarkerItem.class);
+        itemAPI.registerCustomItem(SettingItem.CUSTOM_ITEM_ID, SettingItem.class);
+        itemAPI.registerCustomItem(MarkerPickerItem.CUSTOM_ITEM_ID, MarkerPickerItem.class);
     }
 
     private void registerEntities() {
-        Entity.registerCustomEntity(new CustomClassEntityProvider(MarkerEntity.class));
+        EntityManager.get().registerDefinition(MarkerEntity.DEF);
     }
 
     @EventHandler

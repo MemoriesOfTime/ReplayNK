@@ -12,8 +12,9 @@ import cn.powernukkitx.replaynk.trail.Trail;
  * ReplayNK Project
  */
 public class EditMarkerItem extends ReplayNKItem {
+    public static final int CUSTOM_ITEM_ID = 12102;
     public EditMarkerItem() {
-        super("replaynk:edit_marker", "Edit Marker", "replaynk_edit_marker");
+        super(/*"replaynk:edit_marker"*/ CUSTOM_ITEM_ID, 0, 1, "Edit Marker", "replaynk_edit_marker");
     }
 
     @Override

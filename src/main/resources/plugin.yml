@@ -3,5 +3,7 @@ main: cn.powernukkitx.replaynk.ReplayNK
 version: "1.0.1"
 api: ["1.0.14"]
 load: POSTWORLD
+depend:
+  - "CustomItemAPI"
 author: daoge_cmd
 website: https://github.com/PowerNukkitX/ReplayNK

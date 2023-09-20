@@ -1,9 +1,6 @@
 package cn.powernukkitx.replaynk.trail;
 
 import cn.nukkit.Player;
-import cn.nukkit.camera.data.*;
-import cn.nukkit.camera.instruction.impl.ClearInstruction;
-import cn.nukkit.camera.instruction.impl.SetInstruction;
 import cn.nukkit.entity.Entity;
 import cn.nukkit.form.element.ElementDropdown;
 import cn.nukkit.form.element.ElementInput;
@@ -13,15 +10,21 @@ import cn.nukkit.form.window.FormWindowCustom;
 import cn.nukkit.level.Level;
 import cn.nukkit.level.Position;
 import cn.nukkit.math.BVector3;
+import cn.nukkit.math.Vector2f;
 import cn.nukkit.math.Vector3;
+import cn.nukkit.math.Vector3f;
 import cn.nukkit.network.protocol.CameraInstructionPacket;
 import cn.nukkit.network.protocol.SpawnParticleEffectPacket;
+import cn.nukkit.network.protocol.types.camera.CameraEase;
+import cn.nukkit.network.protocol.types.camera.CameraSetInstruction;
 import cn.nukkit.potion.Effect;
+import cn.nukkit.utils.CameraPresetManager;
 import cn.powernukkitx.replaynk.ReplayNK;
 import cn.powernukkitx.replaynk.entity.MarkerEntity;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.SneakyThrows;
+import org.cloudburstmc.protocol.common.util.OptionalBoolean;
 
 import java.util.Arrays;
 import java.util.List;
@@ -49,7 +52,7 @@ public final class Marker {
     private double rotY;
     @Getter
     @Setter
-    private EaseType easeType;
+    private CameraEase easeType;
     @Getter
     private double cameraSpeed = 1;
     @Getter
@@ -65,10 +68,10 @@ public final class Marker {
     private transient boolean runtimeMark = false;
 
     public Marker(double x, double y, double z, double rotX, double rotY, double cameraSpeed) {
-        this(x, y, z, rotX, rotY, EaseType.LINEAR, cameraSpeed);
+        this(x, y, z, rotX, rotY, CameraEase.LINEAR, cameraSpeed);
     }
 
-    public Marker(double x, double y, double z, double rotX, double rotY, EaseType easeType, double cameraSpeed) {
+    public Marker(double x, double y, double z, double rotX, double rotY, CameraEase easeType, double cameraSpeed) {
         this.x = x;
         this.y = y;
         this.z = z;
@@ -196,7 +199,7 @@ public final class Marker {
         var markers = trail.getMarkers();
         var posElement = new ElementInput(ReplayNK.getI18n().tr(langCode, "replaynk.mark.editorform.pos"), "", x + ", " + y + ", " + z);
         var rotElement = new ElementInput(ReplayNK.getI18n().tr(langCode, "replaynk.mark.editorform.rot"), "", rotX + ", " + rotY);
-        var easeTypeElement = new ElementDropdown(ReplayNK.getI18n().tr(langCode, "replaynk.mark.editorform.easetype"), Arrays.stream(EaseType.values()).map(EaseType::getType).toList(), 0);
+        var easeTypeElement = new ElementDropdown(ReplayNK.getI18n().tr(langCode, "replaynk.mark.editorform.easetype"), Arrays.stream(CameraEase.values()).map(CameraEase::getSerializeName).toList(), 0);
         var easeTypeDetailsElement = new ElementLabel(ReplayNK.getI18n().tr(langCode, "replaynk.mark.editorform.easetype.details"));
         var indexElement = new ElementInput(ReplayNK.getI18n().tr(langCode, "replaynk.mark.editorform.index"), "", String.valueOf(markers.indexOf(this)));
         var indexDetailsElement = new ElementLabel(ReplayNK.getI18n().tr(langCode, "replaynk.mark.editorform.index.details"));
@@ -225,7 +228,7 @@ public final class Marker {
                 rotX = Double.parseDouble(rot[0]);
                 rotY = Double.parseDouble(rot[1]);
 
-                easeType = EaseType.valueOf(response.getDropdownResponse(2).getElementContent().toUpperCase());
+                easeType = CameraEase.valueOf(response.getDropdownResponse(2).getElementContent().toUpperCase());
 
                 var newIndex = Integer.parseInt(response.getInputResponse(4));
                 if (newIndex < 0 || newIndex >= markers.size()) {
@@ -276,23 +279,23 @@ public final class Marker {
 //            player.addEffect(Effect.getEffect(Effect.INVISIBILITY).setDuration(999999).setVisible(false));
 //        player.teleport(new Location(x, y, z, rotY, rotX));
         var pk = new CameraInstructionPacket();
-        var preset = CameraPreset.FREE;
+        var preset = CameraPresetManager.FREE;
         if (cachedIndex == 0) {
-            pk.setInstruction(SetInstruction.builder()
-                    .preset(preset)
-                    .pos(new Pos((float) x, (float) y, (float) z))
-                    .rot(new Rot((float) rotX, (float) rotY))
-                    .build());
+            CameraSetInstruction cameraSetInstruction = new CameraSetInstruction();
+            cameraSetInstruction.setPreset(preset);
+            cameraSetInstruction.setPos(new Vector3f((float) x, (float) y, (float) z));
+            cameraSetInstruction.setRot(new Vector2f((float) rotX, (float) rotY));
+            pk.setSetInstruction(cameraSetInstruction);
             player.dataPacket(pk);
             //等待1s开始
             Thread.sleep(1000);
         } else {
-            pk.setInstruction(SetInstruction.builder()
-                    .preset(preset)
-                    .pos(new Pos((float) x, (float) y, (float) z))
-                    .rot(new Rot((float) rotX, (float) rotY))
-                    .ease(new Ease((float) easeTime, easeType))
-                    .build());
+            CameraSetInstruction cameraSetInstruction = new CameraSetInstruction();
+            cameraSetInstruction.setPreset(preset);
+            cameraSetInstruction.setPos(new Vector3f((float) x, (float) y, (float) z));
+            cameraSetInstruction.setRot(new Vector2f((float) rotX, (float) rotY));
+            cameraSetInstruction.setEase(new CameraSetInstruction.EaseData(easeType, (float) easeTime));
+            pk.setSetInstruction(cameraSetInstruction);
             player.dataPacket(pk);
             //提前25ms以避免卡顿
             var sleepTime = (long) (easeTime * 1000) - 25;
@@ -338,7 +341,7 @@ public final class Marker {
 
     private void resetCamera(Player player) {
         var pk = new CameraInstructionPacket();
-        pk.setInstruction(ClearInstruction.get());
+        pk.setClear(OptionalBoolean.of(true));
         player.dataPacket(pk);
     }
 }

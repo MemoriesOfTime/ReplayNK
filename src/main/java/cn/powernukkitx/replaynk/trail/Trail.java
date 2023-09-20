@@ -1,7 +1,6 @@
 package cn.powernukkitx.replaynk.trail;
 
 import cn.nukkit.Player;
-import cn.nukkit.camera.instruction.impl.ClearInstruction;
 import cn.nukkit.form.element.ElementDropdown;
 import cn.nukkit.form.element.ElementInput;
 import cn.nukkit.form.element.ElementLabel;
@@ -17,6 +16,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j2;
+import org.cloudburstmc.protocol.common.util.OptionalBoolean;
 
 import javax.annotation.Nullable;
 import java.io.IOException;
@@ -464,7 +464,7 @@ public final class Trail {
         //todo: 目前能播放trail的只能是operator，在未来会支持其他玩家播放trail，这边的代码就得修改
         if (operator != null) {
             var pk = new CameraInstructionPacket();
-            pk.setInstruction(ClearInstruction.get());
+            pk.setClear(OptionalBoolean.of(true));
             operator.dataPacket(pk);
         }
         return true;

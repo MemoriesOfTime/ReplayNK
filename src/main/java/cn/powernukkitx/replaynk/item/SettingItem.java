@@ -10,11 +10,8 @@ import cn.powernukkitx.replaynk.trail.Trail;
  * ReplayNK Project
  */
 public class SettingItem extends ReplayNKItem {
-
-    public static final int CUSTOM_ITEM_ID = 12107;
-
     public SettingItem() {
-        super(/*"replaynk:setting"*/ CUSTOM_ITEM_ID, 0, 1, "Setting", "replaynk_setting");
+        super("replaynk:setting", "Setting", "replaynk_setting");
     }
 
     @Override

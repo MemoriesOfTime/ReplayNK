@@ -10,9 +10,8 @@ import cn.powernukkitx.replaynk.trail.Trail;
  * ReplayNK Project
  */
 public class PlayItem extends ReplayNKItem {
-    public static final int CUSTOM_ITEM_ID = 12106;
     public PlayItem() {
-        super(/*"replaynk:play"*/ CUSTOM_ITEM_ID, 0, 1, "Play", "replaynk_play");
+        super("replaynk:play", "Play", "replaynk_play");
     }
 
     @Override

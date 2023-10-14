@@ -12,9 +12,8 @@ import cn.powernukkitx.replaynk.trail.Trail;
  * ReplayNK Project
  */
 public class ClearMarkerItem extends ReplayNKItem {
-    public static final int CUSTOM_ITEM_ID = 12101;
     public ClearMarkerItem() {
-        super(/*"replaynk:clear_marker"*/ CUSTOM_ITEM_ID, 0, 1, "Clear Marker", "replaynk_clear_marker");
+        super("replaynk:clear_marker", "Clear Marker", "replaynk_clear_marker");
     }
 
     @Override

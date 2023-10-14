@@ -10,9 +10,8 @@ import cn.powernukkitx.replaynk.trail.Trail;
  * ReplayNK Project
  */
 public class PauseItem extends ReplayNKItem {
-    public static final int CUSTOM_ITEM_ID = 12105;
     public PauseItem() {
-        super(/*"replaynk:pause"*/ CUSTOM_ITEM_ID, 0, 1, "Pause", "replaynk_pause");
+        super("replaynk:pause", "Pause", "replaynk_pause");
     }
 
     @Override

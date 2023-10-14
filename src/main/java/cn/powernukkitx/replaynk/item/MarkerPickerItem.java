@@ -12,12 +12,11 @@ import cn.powernukkitx.replaynk.trail.Trail;
  * ReplayNK Project
  */
 public class MarkerPickerItem extends ReplayNKItem {
-    public static final int CUSTOM_ITEM_ID = 12104;
 
     private static final String MARKER_INDEX_KEY = "MarkerIndex";
 
     public MarkerPickerItem() {
-        super(/*"replaynk:marker_picker"*/ CUSTOM_ITEM_ID, 0, 1, "Marker Picker", "replaynk_marker_picker");
+        super("replaynk:marker_picker", "Marker Picker", "replaynk_marker_picker");
     }
 
     @Override

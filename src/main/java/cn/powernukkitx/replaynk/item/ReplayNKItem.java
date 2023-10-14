@@ -1,10 +1,10 @@
 package cn.powernukkitx.replaynk.item;
 
-import cn.lanink.customitemapi.item.CustomItemDefinition;
-import cn.lanink.customitemapi.item.ItemCustom;
-import cn.lanink.customitemapi.item.data.ItemCreativeCategory;
 import cn.nukkit.Player;
 import cn.nukkit.entity.Entity;
+import cn.nukkit.item.customitem.CustomItemDefinition;
+import cn.nukkit.item.customitem.ItemCustom;
+import cn.nukkit.item.customitem.data.ItemCreativeCategory;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -15,12 +15,12 @@ import org.jetbrains.annotations.Nullable;
  */
 public abstract class ReplayNKItem extends ItemCustom {
 
-    public ReplayNKItem(@NotNull int id, Integer meta, int count, @Nullable String name) {
-        super(id, meta, count, name);
+    public ReplayNKItem(@NotNull String id, @Nullable String name) {
+        super(id, name);
     }
 
-    public ReplayNKItem(@NotNull int id, Integer meta, int count, @Nullable String name, @NotNull String textureName) {
-        super(id, meta, count, name, textureName);
+    public ReplayNKItem(@NotNull String id, @Nullable String name, @NotNull String textureName) {
+        super(id, name, textureName);
     }
 
     @Override

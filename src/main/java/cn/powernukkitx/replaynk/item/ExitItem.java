@@ -10,9 +10,8 @@ import cn.powernukkitx.replaynk.trail.Trail;
  * ReplayNK Project
  */
 public class ExitItem extends ReplayNKItem {
-    public static final int CUSTOM_ITEM_ID = 12103;
     public ExitItem() {
-        super(/*"replaynk:exit"*/ CUSTOM_ITEM_ID, 0, 1, "Exit", "replaynk_exit");
+        super("replaynk:exit", "Exit", "replaynk_exit");
     }
 
     @Override

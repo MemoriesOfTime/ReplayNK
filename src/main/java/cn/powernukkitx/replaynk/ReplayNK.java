@@ -1,6 +1,5 @@
 package cn.powernukkitx.replaynk;
 
-import cn.lanink.customitemapi.CustomItemAPI;
 import cn.nukkit.Player;
 import cn.nukkit.Server;
 import cn.nukkit.entity.custom.EntityManager;
@@ -22,6 +21,7 @@ import cn.powernukkitx.replaynk.trail.Trail;
 import lombok.Getter;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -88,15 +88,19 @@ public final class ReplayNK extends PluginBase implements Listener {
     }
 
     private void registerItems() {
-        CustomItemAPI itemAPI = CustomItemAPI.getInstance();
-        itemAPI.registerCustomItem(AddMarkerItem.CUSTOM_ITEM_ID, AddMarkerItem.class);
-        itemAPI.registerCustomItem(ClearMarkerItem.CUSTOM_ITEM_ID, ClearMarkerItem.class);
-        itemAPI.registerCustomItem(ExitItem.CUSTOM_ITEM_ID, ExitItem.class);
-        itemAPI.registerCustomItem(PauseItem.CUSTOM_ITEM_ID, PauseItem.class);
-        itemAPI.registerCustomItem(PlayItem.CUSTOM_ITEM_ID, PlayItem.class);
-        itemAPI.registerCustomItem(EditMarkerItem.CUSTOM_ITEM_ID, EditMarkerItem.class);
-        itemAPI.registerCustomItem(SettingItem.CUSTOM_ITEM_ID, SettingItem.class);
-        itemAPI.registerCustomItem(MarkerPickerItem.CUSTOM_ITEM_ID, MarkerPickerItem.class);
+        List<Class<? extends ReplayNKItem>> list = List.of(
+                AddMarkerItem.class,
+                ClearMarkerItem.class,
+                ExitItem.class,
+                PauseItem.class,
+                PlayItem.class,
+                EditMarkerItem.class,
+                SettingItem.class,
+                MarkerPickerItem.class
+        );
+        for (Class<? extends ReplayNKItem> item : list) {
+            Item.registerCustomItem(item);
+        }
     }
 
     private void registerEntities() {

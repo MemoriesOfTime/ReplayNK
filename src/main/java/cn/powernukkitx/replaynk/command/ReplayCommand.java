@@ -34,6 +34,11 @@ public class ReplayCommand extends PluginCommand<ReplayNK> {
                 CommandParameter.newEnum("remove", new String[]{"remove"}),
                 CommandParameter.newType("name", false, CommandParamType.STRING)
         });
+        commandParameters.put("play", new CommandParameter[]{
+                CommandParameter.newEnum("play", new String[]{"play"}),
+                CommandParameter.newType("playerName", false, CommandParamType.TARGET),
+                CommandParameter.newType("name", false, CommandParamType.STRING)
+        });
         commandParameters.put("list", new CommandParameter[]{
                 CommandParameter.newEnum("list", new String[]{"list"}),
         });
@@ -105,6 +110,20 @@ public class ReplayCommand extends PluginCommand<ReplayNK> {
                     strBuilder.append(trail.getName()).append(" ");
                 }
                 this.sendMessage(sender, "replaynk.command.replay.list", strBuilder.toString());
+                return true;
+            }
+            case "play" -> {
+                var trail = Trail.getTrails().get(args[2]);
+                if (trail == null) {
+                    this.sendMessage(sender, "replaynk.trail.notfound", args[2]);
+                    return false;
+                }
+                Player target = Server.getInstance().getPlayer(args[1]);
+                if (target == null) {
+                    this.sendMessage(sender, "replaynk.player.notfound", args[1]);
+                    return false;
+                }
+                trail.play(target, true);
                 return true;
             }
             default -> {

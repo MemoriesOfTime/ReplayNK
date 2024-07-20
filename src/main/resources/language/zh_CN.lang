@@ -58,3 +58,5 @@ replaynk.markerpicker.pick.success=§a成功选中了标记点 §f{%0} §a!
 replaynk.markerpicker.picked=§a点击右键以放下标记点 §f{%0} §a!
 replaynk.markerpicker.nopickedmarker=§c你没有选中任何标记点!
 replaynk.markerpicker.move.success=§a成功移动了标记点 §f{%0} §a!
+
+replaynk.player.notfound=§c找不到玩家 §f{%0} §c!

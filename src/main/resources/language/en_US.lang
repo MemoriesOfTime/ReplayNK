@@ -58,3 +58,5 @@ replaynk.markerpicker.pick.success=§aSuccessfully selected marker §f{%0}§a!
 replaynk.markerpicker.picked=§aRight click to drop marker §f{%0}§a!
 replaynk.markerpicker.nopickedmarker=§cYou have not selected any markers!
 replaynk.markerpicker.move.success=§aSuccessfully moved marker §f{%0}§a!
+
+replaynk.player.notfound=§cCannot found player §f{%0} §c!

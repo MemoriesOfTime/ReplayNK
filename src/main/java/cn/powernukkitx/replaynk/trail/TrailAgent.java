@@ -26,8 +26,6 @@ public class TrailAgent {
         }
 
         var basePath = ReplayNK.getInstance().getDataFolder().toPath().resolve("trails").resolve(trailName + ".json");
-
-        ReplayNK.getInstance().getLogger().info("Base Path: " + basePath);
         if (!Files.exists(basePath)) {
             return null;
         }

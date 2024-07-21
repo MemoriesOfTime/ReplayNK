@@ -426,23 +426,45 @@ public final class Trail {
         player.showFormWindow(form);
     }
 
+    /**
+     * 准备运行时标记。
+     * 该方法用于处理标记集合，根据标记的数量和配置，生成适合运行时使用的标记列表。
+     * 这包括清除现有的运行时标记、判断是否需要添加新的运行时标记，以及对新标记进行相机速度和其他属性的设置。
+     *
+     * @see #clearRuntimeMarkers() 清除运行时标记
+     */
     public void prepareRuntimeMarkers() {
+        // 清除现有的运行时标记
         clearRuntimeMarkers();
+
+        // 根据标记集合的大小，决定是否需要进一步处理
         if (markers.size() == 0) {
+            // 如果标记集合为空，直接返回，无需处理
             return;
         } else if (markers.size() == 1) {
+            // 如果标记集合只有一个元素，将其直接添加到运行时标记集合中
             runtimeMarkers.add(markers.get(0));
             return;
         }
-        //将第一个点的cameraSpeed设置为第二个点的cameraSpeed，以保证第一个点的cameraSpeed不会影响到插值
+
+        // 当标记集合中有两个或更多元素时，进行如下处理：
+        // 将第一个标记的相机速度设置为第二个标记的相机速度，以确保相机速度的一致性
+        // 将第一个点的cameraSpeed设置为第二个点的cameraSpeed，以保证第一个点的cameraSpeed不会影响到插值
         markers.get(0).setCameraSpeed(markers.get(1).getCameraSpeed());
+
+        // 使用插值器生成适合运行时的标记集合
         runtimeMarkers = interpolator.interpolator(new ArrayList<>(markers), minDistance);
+
+        // 遍历运行时标记集合，设置相机速度倍数和标记为运行时标记
         runtimeMarkers.forEach(marker -> {
             marker.setCameraSpeed(marker.getCameraSpeed() * cameraSpeedMultiple);
             marker.setRuntimeMark(true);
         });
+
+        // 缓存运行时标记的索引，以便快速访问
         cacheIndexForRuntimeMarkers();
     }
+
 
     public void resetAllMarkerSpeed() {
         for (var marker : markers) {

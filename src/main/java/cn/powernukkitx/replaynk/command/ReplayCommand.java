@@ -10,6 +10,9 @@ import cn.nukkit.lang.LangCode;
 import cn.nukkit.lang.PluginI18nManager;
 import cn.powernukkitx.replaynk.ReplayNK;
 import cn.powernukkitx.replaynk.trail.Trail;
+import cn.powernukkitx.replaynk.trail.TrailAgent;
+
+import java.util.ArrayList;
 
 /**
  * @author daoge_cmd
@@ -113,17 +116,33 @@ public class ReplayCommand extends PluginCommand<ReplayNK> {
                 return true;
             }
             case "play" -> {
-                var trail = Trail.getTrails().get(args[2]);
-                if (trail == null) {
-                    this.sendMessage(sender, "replaynk.trail.notfound", args[2]);
-                    return false;
+                ArrayList<Player> targets = new ArrayList<>();
+                if (args[1].equals("@s") || args[1].equals("@p")) {
+                    targets.add(sender.asPlayer());
+                } else if (args[1].equals("@a")) {
+                    targets.addAll(Server.getInstance().getOnlinePlayers().values());
+                } else {
+                    Player target = Server.getInstance().getPlayer(args[1]);
+
+                    if (target != null) {
+                        targets.add(target);
+                    }
                 }
-                Player target = Server.getInstance().getPlayer(args[1]);
-                if (target == null) {
+
+                if (targets.isEmpty()) {
                     this.sendMessage(sender, "replaynk.player.notfound", args[1]);
                     return false;
                 }
-                trail.play(target, true);
+
+                if (!Trail.getTrails().containsKey(args[2])) {
+                    this.sendMessage(sender, "replaynk.trail.notfound", args[2]);
+                    return false;
+                }
+                targets.forEach(target -> {
+                    var trail = TrailAgent.init(target, args[2]);
+                    assert trail != null;
+                    trail.play(false);
+                });
                 return true;
             }
             default -> {

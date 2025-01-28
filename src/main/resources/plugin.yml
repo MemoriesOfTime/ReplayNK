@@ -1,7 +1,8 @@
 name: ReplayNK
 main: cn.powernukkitx.replaynk.ReplayNK
-version: "1.0.2.1-MOT"
+version: "1.0.2.1-NKMOT"
 api: ["1.0.14"]
 load: POSTWORLD
 author: daoge_cmd
-website: https://github.com/PowerNukkitX/ReplayNK
+website: https://github.com/MemoriesOfTime/ReplayNK
+originalWebsite: https://github.com/PowerNukkitX/ReplayNK

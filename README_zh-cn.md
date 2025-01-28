@@ -1,10 +1,11 @@
-# ReplayNK - MCBE PowerNukkitX平台 平滑镜头插件
+# ReplayNK - MCBE Nukkit-MOT 平滑镜头插件
 
-![ReplayNK](https://socialify.git.ci/PowerNukkitX/ReplayNK/image?description=1&descriptionEditable=ReplayMod%20for%20MCBE!&font=Inter&forks=1&issues=1&language=1&name=1&owner=1&pattern=Plus&pulls=1&stargazers=1&theme=Light)
+![ReplayNK](https://socialify.git.ci/MemoriesOfTime/ReplayNK/image?description=1&descriptionEditable=ReplayMod%20for%20MCBE!&font=Inter&forks=1&issues=1&language=1&name=1&owner=1&pattern=Plus&pulls=1&stargazers=1&theme=Light)
 
 ##### [English](README.md) | 简体中文
 
-`ReplayNK`是为基岩版`PowerNukkitX`平台开发的平滑镜头模组，基于MCBE 1.20.0最新的Camera API开发
+`ReplayNK`是为基岩版`PowerNukkitX`平台开发的平滑镜头模组，基于MCBE 1.20.0最新的Camera API开发  
+本仓库是与 `Nukkit-MOT` 兼容的修改版。
 
 `ReplayNK`针对镜头运动进行了大量的优化，使得其运镜的流畅度和平滑度远高于通过传统的`/teleport`指令加命令方块实现的镜头运动
 
@@ -16,7 +17,7 @@
 
 ### 1. 安装插件
 
-在Github Release下载最新的插件jar包，放入PowerNukkitX的插件文件夹内，重启服务器即可。插件所需资源包已内置到插件中，你不需要额外安装资源包。
+在Github Release下载最新的插件jar包，放入Nukkit-MOT的插件文件夹内，重启服务器即可。插件所需资源包已内置到插件中，你不需要额外安装资源包。
 
 启动后，插件将生成`plugins/ReplayNK/trails`目录并在此目录下保存轨迹文件
 
@@ -79,7 +80,3 @@ A: 由于客户端限制，在运镜速度过高/标记点间距过小的情况�
 Q: 为什么播放结束了我的镜头却没有复位？
 
 A: 这可能是由于发包过快导致的。你可以通过使用命令`/camera @s clear`来解决此问题
-
-## 相关项目
-
-- [PowerNukkitX](https://github.com/PowerNukkitX/PowerNukkitX)

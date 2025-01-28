@@ -1,10 +1,11 @@
-# ReplayNK - MCBE PowerNukkitX camera plugin
+# ReplayNK - MCBE Nukkit-MOT camera plugin
 
-![ReplayNK](https://socialify.git.ci/PowerNukkitX/ReplayNK/image?description=1&descriptionEditable=ReplayMod%20for%20MCBE!&font=Inter&forks=1&issues=1&language=1&name=1&owner=1&pattern=Plus&pulls=1&stargazers=1&theme=Light)
+![ReplayNK](https://socialify.git.ci/MemoriesOfTime/ReplayNK/image?description=1&descriptionEditable=ReplayMod%20for%20MCBE!&font=Inter&forks=1&issues=1&language=1&name=1&owner=1&pattern=Plus&pulls=1&stargazers=1&theme=Light)
 
 ##### English | [简体中文](README_zh-cn.md)
 
-`ReplayNK` is a camera plugin developed for the Bedrock Edition server software `PowerNukkitX`, based on the latest Camera API of MCBE 1.20.0
+`ReplayNK` is a camera plugin developed for the Bedrock Edition server software `PowerNukkitX`, based on the latest Camera API of MCBE 1.20.0  
+This repository is a modified version compatible with `Nukkit-MOT`.
 
 `ReplayNK` has made a lot of optimizations for camera movement, making its camera movement smoother and smoother than the traditional `/teleport`command plus command block to achieve camera movement
 
@@ -16,7 +17,7 @@
 
 ### 1. Install plugin
 
-Download the latest plugin jar package from Github Release, put it into the plugin folder of PowerNukkitX, and restart the server. The resource packs required by the plugin are built into the plugin, and you don't need to install additional resource packs.
+Download the latest plugin jar package from Github Release, put it into the plugin folder of Nukkit-MOT, and restart the server. The resource packs required by the plugin are built into the plugin, and you don't need to install additional resource packs.
 
 After startup, the plugin will generate `plugins/ReplayNK/trails` directory and save trail files in this directory
 
@@ -79,7 +80,3 @@ A: Due to the limitation of the client, when the speed of the mirror is too high
 Q: Why doesn't my camera reset after playback ends?
 
 A: This may be caused by sending packets too fast. You can fix this by using the command `camera @s clear`
-
-## Related projects
-
-- [PowerNukkitX](https://github.com/PowerNukkitX/PowerNukkitX)

@@ -6,7 +6,7 @@
 
     <groupId>cn.powernukkitx</groupId>
     <artifactId>ReplayNK</artifactId>
-    <version>1.0.2.1-MOT</version>
+    <version>1.0.2.1-NKMOT</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -15,10 +15,6 @@
     </properties>
 
     <repositories>
-        <repository>
-            <id>jitpack.io</id>
-            <url>https://www.jitpack.io</url>
-        </repository>
         <repository>
             <id>repo-lanink-cn</id>
             <url>https://repo.lanink.cn/repository/maven-public/</url>
@@ -35,7 +31,13 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>RELEASE</version>
+            <version>1.18.36</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>24.1.0</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
